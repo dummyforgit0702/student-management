@@ -1,9 +1,8 @@
 package com.example.student_management.controller;
 
 import com.example.student_management.model.Student;
-import com.example.student_management.service.StudentService;
+import com.example.student_management.service.impl.StudentServiceImpl;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -24,7 +23,7 @@ class StudentControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private StudentService service;
+    private StudentServiceImpl service;
 
     @Test
     void testGetAllStudents() throws Exception {

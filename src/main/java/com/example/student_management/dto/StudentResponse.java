@@ -1,31 +1,28 @@
-package com.example.student_management.model;
-
-import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+package com.example.student_management.dto;
 
 
-@Entity
-@Table(name = "students")
-public class Student {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+@Data
+@Getter
+@Setter
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class StudentResponse {
+    @JsonProperty("id")
     private Long id;
 
-
+    @JsonProperty("name")
     private String name;
 
-
+    @JsonProperty("email")
     private String email;
 
-
+    @JsonProperty("course")
     private String course;
-
-    public Student(){}
-    public Student(String name, String email, String course){
-        this.name= name;
-        this.email=email;
-        this.course=course;
-    }
 
     public Long getId() {
         return id;
@@ -51,12 +48,7 @@ public class Student {
         this.email = email;
     }
 
-    public String getCourse() {
-        return course;
-    }
-
     public void setCourse(String course) {
-        this.course = course;
+        this.course=course;
     }
-
 }

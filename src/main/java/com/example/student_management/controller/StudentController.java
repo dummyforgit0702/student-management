@@ -1,51 +1,53 @@
 package com.example.student_management.controller;
+import com.example.student_management.dto.CreateStudentRequest;
+import com.example.student_management.dto.StudentResponse;
 import com.example.student_management.model.Student;
-import com.example.student_management.repository.*;
 import com.example.student_management.service.StudentService;
+import com.example.student_management.service.impl.StudentServiceImpl;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+
+import java.net.http.HttpResponse;
 import java.util.List;
 
-@Tag(name="Student Controller", description = "CRUD operations for Student")
 @RestController
 @RequestMapping("/api/students")
 public class StudentController {
+
     private final StudentService service;
-    public StudentController(StudentService service){
-        this.service= service;
+
+    public StudentController(StudentService service) {
+        this.service = service;
     }
 
-    @Operation(summary = "Add a new student")
     @PostMapping
-    public Student addStudent(@Valid @RequestBody Student student){
-        return service.saveStudent(student);
+    public ResponseEntity<StudentResponse> create(@Valid @RequestBody CreateStudentRequest request) {
+        return new ResponseEntity<>(service.createStudent(request), HttpStatus.CREATED);
     }
 
-    @Operation(summary="Get all students")
     @GetMapping
-    public List<Student> getAllStudents(){
-        return service.getAllStudents();
+    public ResponseEntity<List<StudentResponse>> getAll() {
+        return ResponseEntity.ok(service.getAllStudents());
     }
 
-    @Operation(summary = "Get student by ID")
     @GetMapping("/{id}")
-    public Student getStudent(@PathVariable Long id) {
-        return service.getStudentById(id);
+    public ResponseEntity<StudentResponse> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(service.getStudentById(id));
     }
 
-    @Operation(summary = "Update student by ID")
     @PutMapping("/{id}")
-    public Student updateStudent(@PathVariable Long id, @Valid @RequestBody Student student){
-        return service.updateStudent(id, student);
+    public ResponseEntity<StudentResponse> update(@PathVariable Long id, @Valid @RequestBody CreateStudentRequest request) {
+        return ResponseEntity.ok(service.updateStudent(id, request));
     }
 
-    @Operation(summary = "Delete student by ID")
     @DeleteMapping("/{id}")
-    public void deleteStudent(@PathVariable Long id){
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.deleteStudent(id);
+        return ResponseEntity.noContent().build();
     }
-
 }
 

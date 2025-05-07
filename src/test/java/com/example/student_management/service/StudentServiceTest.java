@@ -1,9 +1,9 @@
 package com.example.student_management.service;
 import com.example.student_management.model.Student;
 import com.example.student_management.repository.StudentRepository;
+import com.example.student_management.service.impl.StudentServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,12 +13,12 @@ import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 public class StudentServiceTest {
     private StudentRepository repository;
-    private StudentService service;
+    private StudentServiceImpl service;
 
     @BeforeEach
     void setUp(){
         repository= mock(StudentRepository.class);
-        service= new StudentService(repository);
+        service= new StudentServiceImpl(repository);
     }
 
     @Test
