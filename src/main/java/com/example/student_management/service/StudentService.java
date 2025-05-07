@@ -2,7 +2,6 @@ package com.example.student_management.service;
 
 import com.example.student_management.model.Student;
 import com.example.student_management.repository.StudentRepository;
-import com.example.student_management.exception.GlobalExceptionHandler;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
