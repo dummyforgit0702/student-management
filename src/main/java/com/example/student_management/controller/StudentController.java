@@ -2,6 +2,7 @@ package com.example.student_management.controller;
 import com.example.student_management.model.Student;
 import com.example.student_management.repository.*;
 import com.example.student_management.service.StudentService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -18,7 +19,7 @@ public class StudentController {
 
     @Operation(summary = "Add a new student")
     @PostMapping
-    public Student addStudent(@RequestBody Student student){
+    public Student addStudent(@Valid @RequestBody Student student){
         return service.saveStudent(student);
     }
 
@@ -36,7 +37,7 @@ public class StudentController {
 
     @Operation(summary = "Update student by ID")
     @PutMapping("/{id}")
-    public Student updateStudent(@PathVariable Long id, @RequestBody Student student){
+    public Student updateStudent(@PathVariable Long id, @Valid @RequestBody Student student){
         return service.updateStudent(id, student);
     }
 

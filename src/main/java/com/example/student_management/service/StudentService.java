@@ -19,7 +19,7 @@ public class StudentService {
         return repository.findAll();
     }
     public Student getStudentById(Long id){
-        return repository.findById(id).orElse(null);
+        return repository.findById(id).orElseThrow(()->new RuntimeException("Student not found with id: "+ id));
     }
     public Student updateStudent(Long id, Student studentDetails){
         Student student= repository.findById(id).orElse(null);

@@ -1,14 +1,23 @@
 package com.example.student_management.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+
 
 @Entity
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "Name is mandatory")
     private String name;
+
+    @Email(message = "Email should be valid")
+    @NotBlank(message = "Email is mandatory")
     private String email;
+
+    @NotBlank(message = "Course is mandatory")
     private String course;
 
     public Student(){}
