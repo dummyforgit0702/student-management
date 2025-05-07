@@ -13,15 +13,19 @@ import lombok.Setter;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class StudentResponse {
     @JsonProperty("id")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Long id;
 
     @JsonProperty("name")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String name;
 
     @JsonProperty("email")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String email;
 
     @JsonProperty("course")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String course;
 
     public Long getId() {

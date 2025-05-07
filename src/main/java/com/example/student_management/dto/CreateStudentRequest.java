@@ -9,50 +9,18 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Data
-/*
-@Getter
-@Setter
-
- */
 public class CreateStudentRequest {
 
     @JsonProperty("name")
-    @NotBlank(message = "Name is mandatory")
+    @NotBlank(message = "Name is mandatory")  // ← Prevents null and blank ("")
     private String name;
 
-
     @JsonProperty("email")
-    @NotBlank(message= "Email is mandatory")
-    @Email(message = "Email must be valid")
+    @NotBlank(message = "Email is mandatory")
+    @Email(message = "Email should be valid")  // ← Validates format
     private String email;
 
     @JsonProperty("course")
-    @NotBlank(message = "Course is Mandatory")
+    @NotBlank(message = "Course is mandatory")
     private String course;
-    /*
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getCourse() {
-        return course;
-    }
-
-    public void setCourse(String course) {
-        this.course = course;
-    }
-
-     */
 }
